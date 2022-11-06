@@ -44,7 +44,7 @@ push_ssl_cert)
 	cat $fullchain |trace $SSH root@$ip "cat > /usr/syno/etc/certificate/_archive/$certname/fullchain.pem"
 	cat $key |trace $SSH root@$ip "cat > /usr/syno/etc/certificate/_archive/$certname/privkey.pem"
 	trace $SSH root@$ip "chmod 600 /usr/syno/etc/certificate/_archive/$certname/privkey.pem"
-	trace $SSH root@$ip "/usr/syno/bin/synosystemctl restart nginx"
+	trace $SSH -fn root@$ip "/bin/nohup /usr/syno/bin/synosystemctl restart nginx"
 	echo "[*] done, $ip now uses new SSL certificates"
 	;;
 set_htaccess)
